@@ -2,6 +2,9 @@
 #include <cmath>
 using namespace std;
 
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
+
 float mean(const float* x, int size) {
     float num = 0;
     for (int i = 0; i < size; i++) {
