@@ -1,4 +1,4 @@
-#include "‫‪anomaly_detection_util.h"
+#include "anomaly_detection_util.h"
 #include <cmath>
 using namespace std;
 
@@ -7,7 +7,7 @@ float mean(const float* x, int size) {
     for (int i = 0; i < size; i++) {
         num += x[i];
     }
-    return (float) (num / (float) size);
+    return num / (float) size;
 }
 
 float deviation(float var) {
@@ -24,12 +24,12 @@ float sum(float* x, float* y, int size) {
 
 float var(float* x, int size) {
     float m = mean(x, size), num = sum(x, x, size);
-    return (float) (num / (float) size) - m * m;
+    return (num / (float) size) - (m * m);
 }
 
 float cov(float* x, float* y, int size) {
     float num = sum(x, y, size);
-    return num / (float) size - mean(x, size) * mean(y, size);
+    return (num / (float) size) - (mean(x, size) * mean(y, size));
 }
 
 float pearson(float* x, float* y, int size) {
@@ -37,7 +37,7 @@ float pearson(float* x, float* y, int size) {
     float devX = deviation(var(x, size));
     float devY = deviation(var(y, size));
 
-    return (float) c / devX * devY;
+    return (float) c / (devX * devY);
 }
 
 Line linear_reg(Point** points, int size) {
@@ -61,10 +61,10 @@ float dev(Point p, Point** points, int size) {
 
 float dev(Point p, Line l) {
     // calculating the absolute value of two points
-    int ab = l.f(p.x) - p.y;
+    float ab = l.f(p.x) - p.y;
     if (ab < 0) {
         ab *= -1;
     }
 
-    return (float) ab;
+    return ab;
 }
