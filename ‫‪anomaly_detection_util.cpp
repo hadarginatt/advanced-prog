@@ -3,9 +3,6 @@
 using namespace std;
 
 float mean(const float* x, int size) {
-    if (size <= 0) {
-        return 0;
-    }
     float num = 0;
     for (int i = 0; i < size; i++) {
         num += x[i];
@@ -18,10 +15,6 @@ float deviation(float var) {
 }
 
 float var(float* x, int size) {
-    if (size <= 0) {
-        return 0;
-    }
-
     float m = mean(x, size), num = 0;
     for (int i = 0; i < size; i++) {
         num += x[i] * x[i];
@@ -30,10 +23,6 @@ float var(float* x, int size) {
 }
 
 float cov(float* x, float* y, int size) {
-    if (size <= 0) {
-        return 0;
-    }
-
     float num = 0;
     for (int i = 0; i < size; i++) {
         num += x[i] * y[i];
@@ -42,22 +31,14 @@ float cov(float* x, float* y, int size) {
 }
 
 float pearson(float* x, float* y, int size) {
-    if (size <= 0) {
-        return 0;
-    }
-
-    float covar = cov(x, y, size);
+    float c = cov(x, y, size);
     float devX = deviation(var(x, size));
     float devY = deviation(var(y, size));
 
-    return (float) covar / devX * devY;
+    return (float) c / devX * devY;
 }
 
 Line linear_reg(Point** points, int size) {
-    if (size <= 0) {
-        return Line();
-    }
-
     float x[size], y[size];
 
     for (int i = 0; i < size; i++) {
@@ -77,5 +58,11 @@ float dev(Point p, Point** points, int size) {
 }
 
 float dev(Point p, Line l) {
-    return abs(l.f(p.x) - p.y);
+    // calculating the absolute value of two points
+    int ab = l.f(p.x) - p.y;
+    if (ab < 0) {
+        ab *= -1;
+    }
+
+    return (float) ab;
 }
