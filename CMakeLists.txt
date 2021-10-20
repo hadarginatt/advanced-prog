@@ -3,4 +3,4 @@ project(advanced_prog)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(advanced_prog main.cpp "\u202B\u202Aanomaly_detection_util.cpp")
+add_executable(advanced_prog main.cpp)
