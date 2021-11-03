@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "anomaly_detection_util.h"
 
@@ -25,14 +24,15 @@ int main(){
 	float e[]={8.25,16.63,0.999,2.015,0.113,8.176,0.176};
 
 
-	for(int i=0;i<7;i++)
-		if(wrong(v[i],e[i]))
+
+	for (int i=0;i<7;i++)
+		if (wrong(v[i],e[i]))
 			cout<<"error for check "<<i<<" (-14)"<<endl;
 
 
-	for(int i=0;i<N;i++)
+	for (int i = 0 ; i < N; i++)
 		delete ps[i];
 
-	cout<<"done"<<endl;
+	cout << "done" << endl;
 	return 0;
 }

@@ -1,7 +1,3 @@
-//
-// Created by dar on 03/11/2021.
-//
-
 #ifndef ADVANCED_PROG_ANOMALY_DETECTION_H
 #define ADVANCED_PROG_ANOMALY_DETECTION_H
 
