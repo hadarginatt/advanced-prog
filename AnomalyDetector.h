@@ -1,10 +1,11 @@
 #ifndef ADVANCED_PROG_ANOMALYDETECTOR_H
 #define ADVANCED_PROG_ANOMALYDETECTOR_H
+#include "timeseries.h"
 #include <string>
 #include <vector>
 using namespace std;
 
-class TimeSeries {};
+//class TimeSeries {};
 
 class AnomalyReport {
 public:
