@@ -1,8 +1,8 @@
 #ifndef ADVANCED_PROG_SIMPLEANOMALYDETECTOR_H
 #define ADVANCED_PROG_SIMPLEANOMALYDETECTOR_H
-#include <string>
 #include "anomaly_detection_util.h"
 #include "AnomalyDetector.h"
+#include <string>
 using namespace std;
 //
 
