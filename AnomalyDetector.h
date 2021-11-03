@@ -18,5 +18,7 @@ public:
     virtual vector<AnomalyReport> detect(const TimeSeries& ts) = 0;
     virtual ~TimeSeriesAnomalyDetector() {};
 };
-
 #endif //ADVANCED_PROG_ANOMALYDETECTOR_H
+
+
+

@@ -4,5 +4,3 @@
 class TimeSeries {
 
 };
-
-#endif //ADVANCED_PROG_TIMESERIES_H
