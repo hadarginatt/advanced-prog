@@ -5,6 +5,7 @@ using namespace std;
 // Hadar Ginatt, ID: 207542663
 // Dar Mendelowitz, ID: 316491208
 
+// returns avg
 float mean(const float* x, int size) {
     float num = 0;
     for (int i = 0; i < size; i++) {
@@ -17,6 +18,7 @@ float deviation(float var) {
     return sqrt(var);
 }
 
+// Helper for var function and for cov function.
 float sum(float* x, float* y, int size) {
     float s = 0;
     for (int i = 0; i < size; i++) {
@@ -53,7 +55,7 @@ Line linear_reg(Point** points, int size) {
 
     float co = cov(x, y, size);
     float a = co / var(x, size);
-    float b = mean(y, size) - a * mean(x, size);
+    float b = mean(y, size) - a * mean(x, size); // b = y - ax
 
     return Line(a, b);
 }
