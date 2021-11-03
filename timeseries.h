@@ -1,4 +1,8 @@
 #ifndef ADVANCED_PROG_TIMESERIES_H
 #define ADVANCED_PROG_TIMESERIES_H
 
+class TimeSeries {
+
+};
+
 #endif //ADVANCED_PROG_TIMESERIES_H
