@@ -38,6 +38,8 @@ public:
                 i++;
             }
         }
+
+        file.close();
     };
 
     // Returns a list of values associated with a feature.
