@@ -3,7 +3,7 @@
 #include "anomaly_detection_util.h"
 #include "AnomalyDetector.h"
 #include <string>
-#include <stl>
+//#include <stl>
 #include <list>
 #define NORMAL_THRESHOLD 0.9
 using namespace std;
@@ -18,28 +18,27 @@ struct correlatedFeatures {
 };
 
 class SimpleAnomalyDetector: public TimeSeriesAnomalyDetector {
-    vector<correlatedFeatchers> mostCorrelatedFeatures;
+    vector<correlatedFeatures> mostCorrelatedFeatures;
 
 
 public:
-
     SimpleAnomalyDetector();
     virtual ~SimpleAnomalyDetector();
 
     //setting the features points in a vector
-    vector<Point> getPointsFromAxes (vector<float> f_i, vector<float> f_j) {
-        vector < Point > featuresPoints = new vector<Point>;
-        for (int i = 0; i < featuresPoints().size(); i++) {
-            featuresPoints[i] = new Point(f_i[i], f_j[i]);
+    vector<Point> getPointsFromAxes(vector<float> f_i, vector<float> f_j) {
+        vector<Point> featuresPoints;
+        for (int i = 0; i < featuresPoints.size(); i++) {
+            featuresPoints[i] = Point(f_i[i], f_j[i]);
         }
         return featuresPoints;
     }
     //declaring the threshold of the features as the farthest point from the reg line of the two features.
     float getFeaturesThreshold (vector<Point> featurePoints, Line regLine) {
         Point farthestPoint = featurePoints[0];
-        for ( int i = 0 ; i < featurePoints.size() ; i ++) {
+        for (int i = 0 ; i < featurePoints.size() ; i++) {
             if (dev(featurePoints[i],regLine) > dev(farthestPoint, regLine)){
-                farthestPoint = (featurePoints[i];
+                farthestPoint = featurePoints[i];
             }
         }
         float threshold = dev(farthestPoint, regLine);
@@ -47,21 +46,23 @@ public:
 
     }
 
-
     //the algoritem from the file (gets the time series)
-    virtual void learnNormal(const TimeSeries& ts){
+    virtual void learnNormal(const TimeSeries& ts) {
         vector<string> features = ts.getFeatures();
         float maxPearson = 0;
         int c = -1;
+
         for (int i = 0; i < features.size(); i++) {
             for (int j = i + 1; j < features.size(); j++) {
               vector<float> f_i = ts.getValues(features[i]);
               vector<float> f_j = ts.getValues(features[j]);
-              float pearson = abs(pearson(f_i,f_j););
+
+              float pearson = abs(pearson(f_i,f_j));
               if (pearson > maxPearson) {
                   maxPearson = pearson;
               }
             }
+
             if (c != -1 && mostCorrelated >= NORMAL_THRESHOLD){
                 correlatedFeatures mostCorrelated;
                 mostCorrelated.feature1 = features[i];
@@ -81,12 +82,13 @@ public:
     vector<correlatedFeatures> getNormalModel() {
         return mostCorrelatedFeatures;
     }
+
     //another time series
     virtual vector<AnomalyReport> detect(const TimeSeries& ts) {
         //learning the normal time step
        ts::learnNormal(ts);
         vector<AnomalyReport> anomalyReports;
-        for (int i = 0; i < ts.getValues().size(); i++ ) {
+        for (int i = 0; i < ts.getValues().size(); i++) {
             //if (.... current threshold is crossing the correlatedFeatures threshold){
 
                 AnomalyReport newReport = new AnomalyReport;
@@ -96,7 +98,6 @@ public:
 
     }
             return anomalyReports;
-}
 }
 };
 
