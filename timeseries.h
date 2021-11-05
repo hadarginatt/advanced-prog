@@ -9,10 +9,13 @@
 using namespace std; //
 
 class TimeSeries {
-    map<string, vector<float>> _map;
+    //new - added protected
+    protected map<string, vector<float>> _map;
+    //new - changed to protected member field
+    protected vector<string> features;
 public:
     explicit TimeSeries(const char* fileName) {
-        vector<string> features;
+
         ifstream file(fileName);
         string feature, value;
 
@@ -50,6 +53,10 @@ public:
     // Returns the i'th value of a feature (the object in line i, row j).
     float getValueByTimeStep(string& feature, int i) {
         return _map.at(feature).at(i);
+    }
+    //new func - getter to the features
+    float getFeatures() {
+        return features;
     }
 
     ~TimeSeries() = default;;

@@ -11,7 +11,9 @@ class AnomalyReport {
 public:
     const string description;
     const long timeStep;
-    AnomalyReport(string description, long timeStep) : description(description), timeStep(timeStep) {}
+    AnomalyReport(string description, long timeStep) : description(description), timeStep(timeStep) {
+
+    }
 };
 
 class TimeSeriesAnomalyDetector {
@@ -20,6 +22,13 @@ public:
     virtual vector<AnomalyReport> detect(const TimeSeries& ts) = 0;
     virtual ~TimeSeriesAnomalyDetector() {};
 };
+
+virtual void learnNormal(const TimeSeries& ts) = 0 {
+    ts.
+
+}
+virtual vector<AnomalyReport> detect(const TimeSeries& ts) = 0{}
+
 #endif //ADVANCED_PROG_ANOMALYDETECTOR_H
 
 
