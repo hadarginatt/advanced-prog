@@ -64,6 +64,7 @@ float dev(Point p, Point** points, int size) {
     return dev(p, linear_reg(points, size));
 }
 
+
 float dev(Point p, Line l) {
     // calculating the absolute value of two points
     float ab = l.f(p.x) - p.y;
