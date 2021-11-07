@@ -39,7 +39,7 @@ public:
         Point farthestPoint = featurePoints[0];
         for ( int i = 0 ; i < featurePoints.size() ; i ++) {
             if (dev(featurePoints[i],regLine) > dev(farthestPoint, regLine)){
-                farthestPoint = (featurePoints[i];
+                farthestPoint = (featurePoints[i]);
             }
         }
         float threshold = dev(farthestPoint, regLine);
@@ -83,19 +83,52 @@ public:
     }
     //another time series
     virtual vector<AnomalyReport> detect(const TimeSeries& ts) {
-        //learning the normal time step
-       ts::learnNormal(ts);
-        vector<AnomalyReport> anomalyReports;
-        for (int i = 0; i < ts.getValues().size(); i++ ) {
-            //if (.... current threshold is crossing the correlatedFeatures threshold){
+        vector<AnomalyReport> reports;
+        this.learnNormal(ts);
+        for (int i = 0 ; i < this->mostCorrelatedFeatures.size() ; i ++ ) {
+            vector<float> feature1_values = ts.getValues(this->mostCorrelatedFeatures[i].feature1);
+            vector<float> feature2_values = ts.getValues(this->mostCorrelatedFeatures[i].feature2);
+            vector<Point> testPoints;
+            for (int i = 0 ; i < feature1_values.size(); i ++  ) {
+                Point testPoint = new Point(feature1_values[i], feature2_values[i]);
+                testPoints.push_back(testPoint);
+            }
+            for (int i = 0 ; i < feature1_values.size(); i ++  ) {
+                if (abs(this->mostCorrelatedFeatures[i].lin_reg.f(feature1_values[i]))- feature2_values[i])) > (this->mostCorrelatedFeatures[i].correlation))){
+                    AnomalyReport *newReport = new AnomalyReport(mostCorrelatedFeatures.feature1 + "-" + mostCorrelatedFeatures.feature2, i);
+                }
+        }
+        }
+        return anomalyReports;
+    }
 
-                AnomalyReport newReport = new AnomalyReport;
-                newReport.description = mostCorrelatedFeatures.feature1 +  mostCorrelatedFeatures.feature2;
-                cout << newReport.description;
-                anomalyReports.push_back(newReport);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        vector<AnomalyReport> anomalyReports;
+//        for (int i = 0; i < ts.getValues().size(); i++ ) {
+//            //if (.... current threshold is crossing the correlatedFeatures threshold){
+//
+//                AnomalyReport newReport = new AnomalyReport;
+//                newReport.description = mostCorrelatedFeatures.feature1 +  mostCorrelatedFeatures.feature2;
+//                cout << newReport.description;
+//                anomalyReports.push_back(newReport);
 
     }
-            return anomalyReports;
+
 }
 }
 };
