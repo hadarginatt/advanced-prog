@@ -55,7 +55,7 @@ public:
         return _map.at(feature).at(i);
     }
     //new func - getter to the features
-    float getFeatures() {
+    vector<string> getFeatures() {
         return features;
     }
 
