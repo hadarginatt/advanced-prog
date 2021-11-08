@@ -5,7 +5,6 @@
 #include <string>
 #include <list>
 #include <vector>
-
 #define NORMAL_THRESHOLD 0.9
 
 using namespace std;
