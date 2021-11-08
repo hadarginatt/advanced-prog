@@ -15,7 +15,6 @@ class TimeSeries {
 
 public:
     explicit TimeSeries(const char* fileName) {
-
         ifstream file(fileName);
         string feature, value;
 
