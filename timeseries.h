@@ -14,6 +14,7 @@ class TimeSeries {
     vector<string> features;
     friend void learnNormal(const TimeSeries& ts);
 
+    //
 public:
     explicit TimeSeries(const char* fileName) {
         ifstream file(fileName);
