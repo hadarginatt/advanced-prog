@@ -44,6 +44,11 @@ public:
         file.close();
     };
 
+    // Returns a list of the features.
+    vector<string> getFeatures() {
+        return features;
+    }
+
     // Returns a list of values associated with a feature.
     const vector<float>& getValues(const string& feature) const {
         return _map.at(feature);
@@ -52,10 +57,6 @@ public:
     // Returns the i'th value of a feature (the object in line i, row j).
     float getValueByTimeStep(string& feature, int i) {
         return _map.at(feature).at(i);
-    }
-    //Getter to the features vector.
-    vector<string> getFeatures() {
-        return features;
     }
 
     ~TimeSeries() = default;;
