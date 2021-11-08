@@ -1,9 +1,6 @@
 #include "timeseries.h"
-#include <map>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <sstream>
 
 using namespace std;
 
