@@ -9,9 +9,7 @@
 using namespace std;
 
 class TimeSeries {
-    //new - added protected
     protected map<string, vector<float>> _map;
-    //new - changed to protected member field
     protected vector<string> features;
 public:
     explicit TimeSeries(const char* fileName) {
@@ -54,7 +52,7 @@ public:
     float getValueByTimeStep(string& feature, int i) {
         return _map.at(feature).at(i);
     }
-    //new func - getter to the features
+    //Getter to the features vector.
     vector<string> getFeatures() {
         return features;
     }
