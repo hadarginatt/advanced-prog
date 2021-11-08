@@ -9,8 +9,10 @@
 using namespace std;
 
 class TimeSeries {
-    protected map<string, vector<float>> _map;
-    protected vector<string> features;
+    map<string, vector<float>> _map;
+    vector<string> features;
+    friend void learnNormal(const TimeSeries& ts);
+
 public:
     explicit TimeSeries(const char* fileName) {
 
