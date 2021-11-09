@@ -1,57 +1,51 @@
-#ifndef ADVANCED_PROG_SIMPLEANOMALYDETECTOR_H
-#define ADVANCED_PROG_SIMPLEANOMALYDETECTOR_H
+
+
+#ifndef SIMPLEANOMALYDETECTOR_H_
+#define SIMPLEANOMALYDETECTOR_H_
+
 #include "anomaly_detection_util.h"
 #include "AnomalyDetector.h"
+
+#include "timeseries.h"
 #include <string>
 #include <list>
 #include <vector>
 #define NORMAL_THRESHOLD 0.9
+#include <algorithm>
+#include <string.h>
+#include <math.h>
 
-using namespace std;
-
-// Hadar Ginatt, ID: 207542663
-// Dar Mendelowitz, ID: 316491208
-
-/*
-Defines the correlation between two features according to the given time series.
-*/
-struct correlatedFeatures {
-    string feature1, feature2;
-    //According to the pearson result.
-    float correlation;
-    Line lin_reg;
-    //The point with max deviation from reg line of the features.
-    float threshold;
+struct correlatedFeatures{
+	string feature1,feature2;  // names of the correlated features
+	float corrlation;
+	Line lin_reg;
+	float threshold;
 };
 
-class SimpleAnomalyDetector : public TimeSeriesAnomalyDetector {
-    vector<correlatedFeatures> mostCorrelatedFeatures;
 
+class SimpleAnomalyDetector{
+	std::vector<correlatedFeatures> cf;
 
 public:
-    SimpleAnomalyDetector() = default;
+    vector<correlatedFeatures> mostCorrelatedFeatures;
+    SimpleAnomalyDetector();
+	virtual ~SimpleAnomalyDetector();
 
-    //Setting the features points in a vector.
-    vector<Point> getPointsFromAxes(vector<float> f_i, vector<float> f_j);
+	virtual void learnNormal(const TimeSeries& ts);
+	virtual vector<AnomalyReport> detect(const TimeSeries& ts);
+
+	std::vector<correlatedFeatures> getNormalModel(){
+		return cf;
+	}
+
+    std::vector<Point> getPointsFromAxes(std::vector<float> f_i, std::vector<float> f_j);
 
     //Setting the threshold of the features as the farthest point from the reg line of the two features.
-    float getFeaturesThreshold(vector<Point> featurePoints, Line regLine);
-
-    //The algorithm from the file (gets the time series).
-    virtual void learnNormal(const TimeSeries &ts);
-
-    /*
-    Returns a list of all correlated features.
-    */
-    vector<correlatedFeatures> getNormalModel();
-
-    /*
-    Learns the correlation of the most correlated features and reports deviations once detected.
-    */
-    virtual vector<AnomalyReport> detect(const TimeSeries &ts);
-
-    virtual ~SimpleAnomalyDetector() = default;
-}
+    float getFeaturesThreshold(std::vector<Point> featurePoints, Line regLine);
 
 
-#endif //ADVANCED_PROG_SIMPLEANOMALYDETECTOR_H
+};
+
+
+
+#endif /* SIMPLEANOMALYDETECTOR_H_ */

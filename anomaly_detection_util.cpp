@@ -1,76 +1,48 @@
+/*
+ * animaly_detection_util.cpp
+ *
+ * Author: write your ID and name here
+ */
+
+#include <math.h>
 #include "anomaly_detection_util.h"
-#include <cmath>
-using namespace std;
 
-// Hadar Ginatt, ID: 207542663
-// Dar Mendelowitz, ID: 316491208
-
-// returns avg
-float mean(const float* x, int size) {
-    float num = 0;
-    for (int i = 0; i < size; i++) {
-        num += x[i];
-    }
-    return num / (float) size;
+float avg(float* x, int size){
+	return 0;
 }
 
-float deviation(float var) {
-    return sqrt(var);
+// returns the variance of X and Y
+float var(float* x, int size){
+	return 0;
 }
 
-// Helper for var function and for cov function.
-float sum(float* x, float* y, int size) {
-    float s = 0;
-    for (int i = 0; i < size; i++) {
-        s += x[i] * y[i];
-    }
-    return s;
-}
-
-float var(float* x, int size) {
-    float m = mean(x, size), num = sum(x, x, size);
-    return (num / (float) size) - (m * m);
-}
-
-float cov(float* x, float* y, int size) {
-    float num = sum(x, y, size);
-    return (num / (float) size) - (mean(x, size) * mean(y, size));
-}
-
-float pearson(float* x, float* y, int size) {
-    float c = cov(x, y, size);
-    float devX = deviation(var(x, size));
-    float devY = deviation(var(y, size));
-
-    return (float) c / (devX * devY);
-}
-
-Line linear_reg(Point** points, int size) {
-    float x[size], y[size];
-
-    for (int i = 0; i < size; i++) {
-        x[i] = points[i]->x;
-        y[i] = points[i]->y;
-    }
-
-    float co = cov(x, y, size);
-    float a = co / var(x, size);
-    float b = mean(y, size) - a * mean(x, size); // b = y - ax
-
-    return Line(a, b);
-}
-
-float dev(Point p, Point** points, int size) {
-    return dev(p, linear_reg(points, size));
+// returns the covariance of X and Y
+float cov(float* x, float* y, int size){
+	return 0;
 }
 
 
-float dev(Point p, Line l) {
-    // calculating the absolute value of two points
-    float ab = l.f(p.x) - p.y;
-    if (ab < 0) {
-        ab *= -1;
-    }
-
-    return ab;
+// returns the Pearson correlation coefficient of X and Y
+float pearson(float* x, float* y, int size){
+	return 0;
 }
+
+// performs a linear regression and returns the line equation
+Line linear_reg(Point** points, int size){
+
+	return Line(0,0);
+}
+
+// returns the deviation between point p and the line equation of the points
+float dev(Point p,Point** points, int size){
+	return 0;
+}
+
+// returns the deviation between point p and the line
+float dev(Point p,Line l){
+	return 0;
+}
+
+
+
+
