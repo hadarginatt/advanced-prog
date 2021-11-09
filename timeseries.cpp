@@ -37,7 +37,7 @@ TimeSeries::TimeSeries(const char *fileName) {
     file.close();
 }
 
-vector<string> TimeSeries::getFeatures() {
+vector<string> TimeSeries::getFeatures() const {
     return features;
 }
 

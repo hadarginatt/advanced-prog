@@ -15,13 +15,13 @@ using namespace std;
 class TimeSeries {
     map<string, vector<float>> _map;
     vector<string> features;
-    friend void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts);
+//    friend void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts);
 
 public:
     explicit TimeSeries(const char* fileName);
 
     // Returns a list of the features.
-    vector<string> getFeatures();
+    vector<string> getFeatures() const;
 
     // Returns a list of values associated with a feature.
     const vector<float>& getValues(const string& feature) const;
