@@ -4,6 +4,9 @@
 
 using namespace std;
 
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
+
 TimeSeries::TimeSeries(const char *fileName) {
     ifstream file(fileName);
     string feature, value;

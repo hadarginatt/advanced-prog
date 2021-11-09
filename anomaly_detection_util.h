@@ -1,6 +1,9 @@
 #ifndef INC_190B1ED170FD422AA74998744AD2F438
 #define INC_190B1ED170FD422AA74998744AD2F438
 
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
+
 // returns the variance of X and Y
 float var(float* x, int size);
 
