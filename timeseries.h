@@ -9,6 +9,9 @@
 
 using namespace std;
 
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
+
 class TimeSeries {
     map<string, vector<float>> _map;
     vector<string> features;

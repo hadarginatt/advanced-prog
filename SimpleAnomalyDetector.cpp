@@ -4,9 +4,12 @@
 #include <string>
 #include <list>
 #include <vector>
-
 #define NORMAL_THRESHOLD 0.9
+
 using namespace std;
+
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
 
 //Setting the features points in a vector.
 vector<Point> SimpleAnomalyDetector::getPointsFromAxes(vector<float> f_i, vector<float> f_j) {
@@ -57,7 +60,7 @@ virtual void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
             Line regLine = linear_reg(featuresPoints, featuresPoints.size());
             mostCorrelated.lin_reg = regLine;
             //Setting the threshold as the farthest point from the reg line
-            mostCorrelated.threshold = 1.1 *(getFeaturesThreshold(features, regLine));
+            mostCorrelated.threshold = 1.1 * (getFeaturesThreshold(features, regLine));
             //Setting the most correlated features in the vector.
             mostCorelatedFeatures.push_back(mostCorrelated);
         }

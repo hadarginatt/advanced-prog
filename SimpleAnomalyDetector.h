@@ -9,6 +9,9 @@
 
 using namespace std;
 
+// Hadar Ginatt, ID: 207542663
+// Dar Mendelowitz, ID: 316491208
+
 /*
 Defines the correlation between two features according to the given time series.
 */
