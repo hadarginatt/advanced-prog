@@ -26,9 +26,7 @@ class SimpleAnomalyDetector : public TimeSeriesAnomalyDetector {
 
 
 public:
-    SimpleAnomalyDetector();
-
-    virtual ~SimpleAnomalyDetector();
+    SimpleAnomalyDetector() = default;
 
     //Setting the features points in a vector.
     vector<Point> getPointsFromAxes(vector<float> f_i, vector<float> f_j);
@@ -36,21 +34,20 @@ public:
     //Setting the threshold of the features as the farthest point from the reg line of the two features.
     float getFeaturesThreshold(vector<Point> featurePoints, Line regLine);
 
-    //The algoritem from the file (gets the time series).
+    //The algorithm from the file (gets the time series).
     virtual void learnNormal(const TimeSeries &ts);
 
     /*
     Returns a list of all correlated features.
     */
-    vector<correlatedFeatures> getNormalModel() {
-        return mostCorrelatedFeatures;
-    }
+    vector<correlatedFeatures> getNormalModel();
 
     /*
     Learns the correlation of the most correlated features and reports deviations once detected.
     */
     virtual vector<AnomalyReport> detect(const TimeSeries &ts);
 
+    virtual ~SimpleAnomalyDetector() = default;
 }
 
 
