@@ -1,5 +1,6 @@
 #ifndef ADVANCED_PROG_TIMESERIES_H
 #define ADVANCED_PROG_TIMESERIES_H
+#include "SimpleAnomalyDetector.h"
 #include <map>
 #include <string>
 #include <vector>
@@ -11,7 +12,7 @@ using namespace std;
 class TimeSeries {
     map<string, vector<float>> _map;
     vector<string> features;
-    friend void learnNormal(const TimeSeries& ts);
+    friend void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts);
 
 public:
     explicit TimeSeries(const char* fileName);
