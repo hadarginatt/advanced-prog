@@ -59,7 +59,7 @@ SimpleAnomalyDetector::SimpleAnomalyDetector() {
                 Line regLine = linear_reg(featuresPoints, featuresPoints.size());
                 mostCorrelated.lin_reg = regLine;
                 //Setting the threshold as the farthest point from the reg line
-                mostCorrelated.threshold = getFeaturesThreshold(features, regLine);
+                mostCorrelated.threshold = 1.1 *(getFeaturesThreshold(features, regLine));
                 //Setting the most correlated features in the vector.
                 mostCorelatedFeatures.push_back(mostCorrelated);
             }
@@ -89,10 +89,10 @@ SimpleAnomalyDetector::SimpleAnomalyDetector() {
             }
             for (int i = 0; i < feature1_values.size(); i++) {
                 Line linearReg = this->mostCorrelatedFeatures[i].lin_reg.f(feature1_values[i])
-                float distance = abs(linearReg - feature2_values[i]);
-                float correlation = this->mostCorrelatedFeatures[i].correlation;
+                float delta = abs(linearReg - feature2_values[i]);
+                float threshold = this->mostCorrelatedFeatures[i].threshold;
                 //In case there is a deviation, reporting the detection.
-                if (distance > correlation) {
+                if (delta > threshold) {
                     String strReport = mostCorrelatedFeatures.feature1 + "-" + mostCorrelatedFeatures.feature2;
                     //Reporting the features description and timeStep.
                     AnomalyReport *newReport = new AnomalyReport(strReport, (long) i);
