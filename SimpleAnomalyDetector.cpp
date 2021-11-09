@@ -51,8 +51,8 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
     for (int i = 0; i < features.size(); i++) {
         for (int j = i + 1; j < features.size(); j++) {
             f_i = ts.getValues(features[i]);
-            f_1 = ts.getValueByTimeStep(features[i], i);
-            f_2 = ts.getValueByTimeStep(features[j], j);
+            //f_1 = ts.getValueByTimeStep(features[i], i);
+            //f_2 = ts.getValueByTimeStep(features[j], j);
 
             vector<float> f_j = ts.getValues(features[j]);
             float f_i_array[f_i.size()];
