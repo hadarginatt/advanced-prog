@@ -1,6 +1,5 @@
 #ifndef TIMESERIES_H_
 #define TIMESERIES_H_
-
 #include <string>
 #include <vector>
 #include <map>
@@ -15,7 +14,7 @@ class TimeSeries{
 
 public:
     map<string, vector<float>> _map;
-    vector<string> features;
+    vector<string> _features;
 
 	TimeSeries(const char* fileName) {
         ifstream file(fileName);
@@ -59,7 +58,5 @@ public:
 
     };
 };
-
-
 
 #endif /* TIMESERIES_H_ */
